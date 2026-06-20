@@ -17,4 +17,4 @@ A webapp that takes lecture PDFs or slides and returns:
 - [Ndivhuwo] — Frontend + UI
 
 ## Setup
-Coming soon.
+Coming soon.Stay tuned. :-)
