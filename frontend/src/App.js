@@ -1,21 +1,35 @@
-import './App.css';
+import { useState } from 'react';
 
 function App() {
+  const [file, setFile] = useState(null);
+  const [text, setText] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleUpload = async () => {
+    if (!file) return;
+    setLoading(true);
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const res = await fetch('http://127.0.0.1:8000/extract', {
+      method: 'POST',
+      body: formData,
+    });
+    const data = await res.json();
+    setText(data.text);
+    setLoading(false);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Lecture Summariser</h1>
+      <input type='file' accept='.pdf'
+        onChange={e => setFile(e.target.files[0])} />
+      <button onClick={handleUpload}>
+        {loading ? 'Extracting...' : 'Upload PDF'}
+      </button>
+      {text && <pre>{text}</pre>}
     </div>
   );
 }
