@@ -14,7 +14,7 @@ A webapp that takes lecture PDFs or slides and returns:
 
 ## Team
 - [Ntando](https://github.com/nt883) — Backend + ML
-- [Ndivhuwo] — Frontend + UI
+- [Ndivhuwo](https://github.com/Ndivhuwo2) — Frontend + UI
 
 ## Setup
 Coming soon.Stay tuned. :-)
