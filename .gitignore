@@ -219,3 +219,5 @@ __marimo__/
 
 # Virtual environment
 backend/venv/
+
+backend/.env
