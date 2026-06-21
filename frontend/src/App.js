@@ -1,9 +1,10 @@
 import { useState } from 'react';
+import ReactMarkdown from 'react-markdown';
 import './App.css';
 
 function App() {
   const [file, setFile] = useState(null);
-  const [text, setText] = useState('');
+  const [summary, setSummary] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -16,7 +17,7 @@ function App() {
       const formData = new FormData();
       formData.append('file', file);
 
-      const res = await fetch('http://127.0.0.1:8000/extract', {
+      const res = await fetch('http://127.0.0.1:8000/summarise', {
         method: 'POST',
         body: formData,
       });
@@ -26,7 +27,7 @@ function App() {
       }
 
       const data = await res.json();
-      setText(data.text);
+      setSummary(data.summary);
     } catch (err) {
       setError('Something went wrong while uploading. Please try again.');
     } finally {
@@ -47,11 +48,11 @@ function App() {
         <input type='file' accept='.pdf'
           onChange={e => setFile(e.target.files[0])} />
         <button className="upload-button" onClick={handleUpload}>
-          {loading ? 'Extracting...' : 'Upload PDF'}
+          {loading ? 'Summarising...' : 'Upload PDF'}
         </button>
         {error && <p className="error-message">{error}</p>}
       </div>
-      {text && <pre className="extracted-text">{text}</pre>}
+      {summary && <div className="summary"><ReactMarkdown>{summary}</ReactMarkdown></div>}
     </div>
   );
 }
