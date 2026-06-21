@@ -37,12 +37,20 @@ function App() {
   return (
     <div className="App">
       <h1>Lecture Summariser</h1>
-      <input type='file' accept='.pdf'
-        onChange={e => setFile(e.target.files[0])} />
-      <button className="upload-button" onClick={handleUpload}>
-        {loading ? 'Extracting...' : 'Upload PDF'}
-      </button>
-      {error && <p className="error-message">{error}</p>}
+      <p className="welcome-text">
+        Welcome! Upload your lecture notes and let us do the heavy lifting.
+      </p>
+      <p className="description-text">
+        Upload a PDF or slide deck and get a concise summary and key concepts in seconds.
+      </p>
+      <div className="upload-card">
+        <input type='file' accept='.pdf'
+          onChange={e => setFile(e.target.files[0])} />
+        <button className="upload-button" onClick={handleUpload}>
+          {loading ? 'Extracting...' : 'Upload PDF'}
+        </button>
+        {error && <p className="error-message">{error}</p>}
+      </div>
       {text && <pre className="extracted-text">{text}</pre>}
     </div>
   );
