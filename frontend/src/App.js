@@ -35,6 +35,16 @@ function App() {
     }
   };
 
+  const handleDownload = () => {
+    const blob = new Blob([summary], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'summary.txt';
+    link.click();
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <div className="App">
       <h1>Lecture Summariser</h1>
@@ -45,14 +55,29 @@ function App() {
         Upload a PDF or slide deck and get a concise summary and key concepts in seconds.
       </p>
       <div className="upload-card">
-        <input type='file' accept='.pdf'
-          onChange={e => setFile(e.target.files[0])} />
+        <label className="file-input-label">
+  {file ? file.name : 'Choose a PDF file to upload'}
+  <input type='file' accept='.pdf'
+    onChange={e => setFile(e.target.files[0])} />
+</label>
         <button className="upload-button" onClick={handleUpload}>
           {loading ? 'Summarising...' : 'Upload PDF'}
         </button>
+        {summary && (
+          <button className="download-button" onClick={handleDownload}>
+            Download Summary
+          </button>
+        )}
         {error && <p className="error-message">{error}</p>}
       </div>
-      {summary && <div className="summary"><ReactMarkdown>{summary}</ReactMarkdown></div>}
+      {summary && (
+        <div className="summary-block">
+          <div className="summary-header">Summary</div>
+          <div className="summary-content">
+            <ReactMarkdown>{summary}</ReactMarkdown>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
