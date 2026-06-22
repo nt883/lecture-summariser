@@ -7,6 +7,7 @@ import '../App.css';
 function UploadPage() {
   const [file, setFile] = useState(null);
   const [summary, setSummary] = useState('');
+  const [formulas, setFormulas] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -16,23 +17,24 @@ function UploadPage() {
     setError('');
 
     try {
-      const formData = new FormData();
-      formData.append('file', file);
+  const formData1 = new FormData();
+  formData1.append('file', file);
+  const formData2 = new FormData();
+  formData2.append('file', file);
 
-      const res = await fetch('http://127.0.0.1:8000/summarise', {
-        method: 'POST',
-        body: formData,
-      });
+  const [summaryRes, formulasRes] = await Promise.all([
+    fetch('http://127.0.0.1:8000/summarise', { method: 'POST', body: formData1 }),
+    fetch('http://127.0.0.1:8000/formulas', { method: 'POST', body: formData2 }),
+  ]);
 
-      if (!res.ok) throw new Error('Upload failed');
+  const summaryData = await summaryRes.json();
+  const formulasData = await formulasRes.json();
 
-      const data = await res.json();
-      setSummary(data.summary);
-    } catch (err) {
-      setError('Something went wrong while uploading. Please try again.');
-    } finally {
-      setLoading(false);
-    }
+  setSummary(summaryData.summary);
+  setFormulas(formulasData.formulas);
+} catch (err) {
+  setError('Something went wrong while uploading. Please try again.');
+}
   };
 
   const handleDownload = () => {
@@ -168,6 +170,14 @@ function UploadPage() {
           </div>
         </div>
       )}
+      {formulas && (
+  <div className="summary-block">
+    <div className="summary-header">Formulas</div>
+    <div className="summary-content">
+      <ReactMarkdown>{formulas}</ReactMarkdown>
+    </div>
+  </div>
+)}
     </div>
   );
 }
