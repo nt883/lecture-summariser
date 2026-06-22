@@ -99,7 +99,7 @@ function WelcomePage() {
 
       {/* ── Footer ── */}
       <div className="footer">
-        <p>Lecture Summariser © 2025 — Built by Ndivhuwo & Ntando</p>
+        <p>Lecture Summariser © 2026 — Built by Ndivhuwo & Ntando</p>
       </div>
 
     </div>

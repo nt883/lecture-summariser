@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background-color: #0a4a0e;
+  background-color: #2e7d32;
 }
 
 .App {
@@ -14,6 +14,14 @@ body {
   padding: 2rem;
 }
 
+/* Disclaimer below download button */
+.disclaimer-text {
+  font-size: 0.85rem;
+  color: #bd0000;
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
 .App h1 {
   font-size: 3.5rem;
   font-weight: 700;
@@ -24,14 +32,14 @@ body {
 
 .welcome-text {
   font-size: 1.25rem;
-  color: #555;
+  color: #fffdfd;
   margin-top: 1.25rem;
   margin-bottom: 0;
 }
 
 .description-text {
   font-size: 1rem;
-  color: #888;
+  color: #ffffff;
   max-width: 480px;
   margin-top: 0.5rem;
   margin-bottom: 0;
@@ -161,4 +169,28 @@ body {
 
 .download-button:active {
   transform: scale(0.98);
+}
+
+/* Key concepts green card */
+.concepts-block {
+  background-color: #dcfce7;
+  border-left: 4px solid #166534;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 16px;
+}
+
+.concepts-block .summary-header {
+  color: #166534;
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+/* Loading message */
+.loading-message {
+  color: #555;
+  font-size: 0.95rem;
+  margin-top: 0.75rem;
+  font-style: italic;
 }
