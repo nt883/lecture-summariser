@@ -1,6 +1,8 @@
+import removeMd from 'remove-markdown';
 import { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import './App.css';
+import jsPDF  from 'jspdf';
 
 function App() {
   const [file, setFile] = useState(null);
@@ -34,16 +36,118 @@ function App() {
       setLoading(false);
     }
   };
+const handleDownload = () => {
+  const doc = new jsPDF();
 
-  const handleDownload = () => {
-    const blob = new Blob([summary], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'summary.txt';
-    link.click();
-    URL.revokeObjectURL(url);
+  const margin = 20;
+  const pageWidth = doc.internal.pageSize.getWidth();
+  const pageHeight = doc.internal.pageSize.getHeight();
+  const maxWidth = pageWidth - margin * 2;
+  let y = 0;
+
+  const originalName = file.name.replace(/\.[^/.]+$/, '');
+
+  // ── Header colour band ──────────────────────────────
+  doc.setFillColor(46, 125, 50);
+  doc.rect(0, 0, pageWidth, 40, 'F');
+
+  // ── Document title inside header ────────────────────
+  doc.setFontSize(11);
+  doc.setFont('helvetica', 'normal');
+  doc.setTextColor(200, 230, 201);
+  doc.text('LECTURE SUMMARY', margin, 14);
+
+  // ── Original filename as subtitle ───────────────────
+  doc.setFontSize(16);
+  doc.setFont('helvetica', 'bold');
+  doc.setTextColor(255, 255, 255);
+  const nameLines = doc.splitTextToSize(originalName, maxWidth);
+  doc.text(nameLines, margin, 26);
+
+  y = 40 + 14;
+
+  // ── Thin accent line below header ───────────────────
+  doc.setDrawColor(46, 125, 50);
+  doc.setLineWidth(1);
+  doc.line(margin, y - 4, pageWidth - margin, y - 4);
+
+  // ── Helper: add page number and footer ──────────────
+  const addFooter = () => {
+    doc.setFontSize(9);
+    doc.setTextColor(150, 150, 150);
+    doc.text(
+      `Page ${doc.internal.getCurrentPageInfo().pageNumber}`,
+      pageWidth / 2,
+      pageHeight - 10,
+      { align: 'center' }
+    );
   };
+
+  // ── Process summary line by line ────────────────────
+  const rawLines = summary.split('\n');
+
+  rawLines.forEach(rawLine => {
+    let isHeading = false;
+    let isSubHeading = false;
+    let printLine = rawLine;
+
+    if (rawLine.startsWith('### ')) {
+      isSubHeading = true;
+      printLine = rawLine.replace(/^###\s*/, '');
+    } else if (rawLine.startsWith('## ')) {
+      isHeading = true;
+      printLine = rawLine.replace(/^##\s*/, '');
+    } else {
+      // Strip markdown from regular lines only
+      printLine = removeMd(rawLine);
+    }
+
+    // Skip completely empty lines but add a small gap
+    if (printLine.trim() === '') {
+      y += 4;
+      return;
+    }
+
+    // Set style based on line type
+    if (isHeading) {
+      doc.setFontSize(13);
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(46, 125, 50); // green headings
+      y += 4; // extra space before heading
+    } else if (isSubHeading) {
+      doc.setFontSize(11);
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(40, 40, 40); // dark sub-headings
+      y += 2;
+    } else {
+      doc.setFontSize(11);
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(40, 40, 40);
+    }
+
+    const wrappedLines = doc.splitTextToSize(printLine, maxWidth);
+
+    wrappedLines.forEach(line => {
+      if (y + 7 > pageHeight - 20) {
+        addFooter();
+        doc.addPage();
+        y = margin;
+        doc.setFontSize(11);
+        doc.setFont('helvetica', 'normal');
+        doc.setTextColor(40, 40, 40);
+      }
+      doc.text(line, margin, y);
+      y += 7;
+    });
+  });
+
+  // ── Footer on final page ─────────────────────────────
+  addFooter();
+  doc.setFillColor(46, 125, 50);
+  doc.rect(0, pageHeight - 8, pageWidth, 8, 'F');
+
+  doc.save(`${originalName} — Lecture Summary.pdf`);
+};
 
   return (
     <div className="App">
