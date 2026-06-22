@@ -1,0 +1,207 @@
+.welcome-page {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  color: #1a1a1a;
+  background-color: #f7f7f5;
+}
+
+/* ── Hero ── */
+.hero {
+  background-color: #2e7d32;
+  color: white;
+  text-align: center;
+  padding: 5rem 2rem 4rem;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin: 0 0 1rem;
+  letter-spacing: -0.02em;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+.get-started-btn {
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background-color: white;
+  color: #2e7d32;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.get-started-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* ── Sections ── */
+.section {
+  padding: 4rem 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.alt-section {
+  background-color: #f0f4f0;
+  max-width: 100%;
+  padding: 4rem 2rem;
+}
+
+.alt-section > * {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2e7d32;
+  margin-bottom: 2.5rem;
+}
+
+/* ── Steps ── */
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.step-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+.step-number {
+  width: 48px;
+  height: 48px;
+  background-color: #2e7d32;
+  color: white;
+  font-size: 1.4rem;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+}
+
+.step-card h3 {
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem;
+  color: #1a1a1a;
+}
+
+.step-card p {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ── Do's and Don'ts ── */
+.dos-donts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.dos-card, .donts-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: left;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+.dos-card h3, .donts-card h3 {
+  font-size: 1.1rem;
+  margin: 0 0 1rem;
+}
+
+.dos-card ul, .donts-card ul {
+  padding-left: 1.2rem;
+  margin: 0;
+}
+
+.dos-card li, .donts-card li {
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.7;
+}
+
+/* ── Features ── */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.feature-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+.feature-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem;
+  color: #1a1a1a;
+}
+
+.feature-card p {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ── CTA ── */
+.cta-section {
+  background-color: #2e7d32;
+  color: white;
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.cta-section h2 {
+  font-size: 2rem;
+  margin: 0 0 0.75rem;
+}
+
+.cta-section p {
+  font-size: 1.1rem;
+  opacity: 0.85;
+  margin: 0 0 2rem;
+}
+
+/* ── Footer ── */
+.footer {
+  background-color: #1a1a1a;
+  color: #aaa;
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.85rem;
+}
