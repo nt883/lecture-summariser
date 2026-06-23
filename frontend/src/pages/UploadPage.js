@@ -9,9 +9,9 @@ import '../App.css';
 
 function UploadPage() {
   const [file, setFile] = useState(null);
-  const [summary, setSummary] = useState('');
-  const [formulas, setFormulas] = useState('');
-  const [concepts, setConcepts] = useState('');
+  const [summary, setSummary] = useState(() => localStorage.getItem('summary') || '');
+  const [formulas, setFormulas] = useState(() => localStorage.getItem('formulas') || '');
+  const [concepts, setConcepts] = useState(() => localStorage.getItem('concepts') || '');
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
   const [error, setError] = useState('');
@@ -51,6 +51,12 @@ function UploadPage() {
       setFormulas(formulasData.formulas);
       setConcepts(conceptsData.concepts);
       setDone(true);
+
+      // Save to localStorage
+      localStorage.setItem('summary', summaryData.summary);
+      localStorage.setItem('formulas', formulasData.formulas);
+      localStorage.setItem('concepts', conceptsData.concepts);
+
     } catch (err) {
       setError('Something went wrong while uploading. Please try again.');
     } finally {
@@ -210,13 +216,16 @@ function UploadPage() {
         <label className="file-input-label">
           {file ? file.name : 'Choose a PDF file to upload'}
           <input type='file' accept='.pdf'
-            onChange={e => {
+  onChange={e => {
   setFile(e.target.files[0]);
   setSummary('');
   setFormulas('');
   setConcepts('');
   setDone(false);
   setError('');
+  localStorage.removeItem('summary');
+  localStorage.removeItem('formulas');
+  localStorage.removeItem('concepts');
 }} />
         </label>
 
@@ -224,6 +233,12 @@ function UploadPage() {
         <button className="upload-button" onClick={handleUpload}>
           {loading ? 'Summarising...' : done ? 'Summary Done ✓' : 'Upload PDF'}
         </button>
+
+        {done && (
+  <button className="regenerate-button" onClick={handleUpload}>
+    🔄 Not satisfied? Regenerate
+  </button>
+)}
 
         {/* Loading message — disappears once done */}
         {loading && (
