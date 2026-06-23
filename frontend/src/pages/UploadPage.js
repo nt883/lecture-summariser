@@ -205,7 +205,7 @@ function UploadPage() {
 
   return (
     <div className="App">
-      <h1>Lecture Summariser</h1>
+      <h1>BrieflyAI</h1>
       <p className="welcome-text">
         Welcome! Upload your lecture notes and let us do the heavy lifting.
       </p>

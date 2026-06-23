@@ -1,4 +1,4 @@
-# 📚 Lecture Summariser
+# 📚 BrieflyAI
 
 > An AI-powered web app that transforms lecture PDFs into clean, structured summaries — built for students, by students.
 
@@ -24,7 +24,7 @@ No sign-up required. No data stored. Upload, summarise, download, and go.
 
 ## Why We Built It
 
-As Computer Science students at the University of the Witwatersrand, we know what it's like to have 10 lectures worth of notes the night before an exam. We built Lecture Summariser to cut through the noise and get straight to what matters — fast.
+As Computer Science students at the University of the Witwatersrand, we know what it's like to have 10 lectures worth of notes the night before an exam. We built BrieflyAI to cut through the noise and get straight to what matters — fast.
 
 ---
 
