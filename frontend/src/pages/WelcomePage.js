@@ -9,7 +9,7 @@ function WelcomePage() {
 
       {/* ── Hero Section ── */}
       <div className="hero">
-        <h1 className="hero-title">Lecture Summariser</h1>
+        <h1 className="hero-title">BrieflyAI</h1>
         <p className="hero-subtitle">
           Your AI-powered study companion. Upload a lecture PDF and get a clean,
           concise summary in seconds — so you can study smarter, not harder.
@@ -68,7 +68,7 @@ function WelcomePage() {
 
       {/* ── Why Us ── */}
       <div className="section">
-        <h2 className="section-title">Why Lecture Summariser?</h2>
+        <h2 className="section-title">Why BrieflyAI?</h2>
         <div className="features-grid">
           <div className="feature-card">
             <div className="feature-icon">⚡</div>
@@ -99,7 +99,7 @@ function WelcomePage() {
 
       {/* ── Footer ── */}
       <div className="footer">
-        <p>Lecture Summariser © 2026 — Built by Ndivhuwo & Ntando</p>
+        <p>BrieflyAI © 2026 — Built by Ndivhuwo & Ntando</p>
       </div>
 
     </div>

@@ -14,7 +14,7 @@ app.add_middleware(
 
 @app.get("/")
 def home():
-    return {"message": "Lecture Summariser API is running"}
+    return {"message": "BrieflyAI API is running"}
 
 @app.post("/extract")
 async def extract(file: UploadFile = File(...)):

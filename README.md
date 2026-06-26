@@ -1,70 +1,93 @@
-# Getting Started with Create React App
+# 📚 BrieflyAI
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> An AI-powered web app that transforms lecture PDFs into clean, structured summaries — built for students, by students.
 
-## Available Scripts
+![React](https://img.shields.io/badge/Frontend-React-61DAFB?style=flat&logo=react)
+![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688?style=flat&logo=fastapi)
+![Python](https://img.shields.io/badge/Language-Python-3776AB?style=flat&logo=python)
+![Groq](https://img.shields.io/badge/AI-Groq-FF6B35?style=flat)
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## What It Does
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Upload any lecture PDF and get back:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- 📝 **A concise AI-generated summary** of the lecture content
+- 💡 **Key concepts** extracted and highlighted
+- 🔢 **Formulas** identified and listed separately
+- 📄 **A downloadable, styled PDF** — formatted with headings, sections, and page numbers
 
-### `npm test`
+No sign-up required. No data stored. Upload, summarise, download, and go.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## Why We Built It
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+As Computer Science students at the University of the Witwatersrand, we know what it's like to have 10 lectures worth of notes the night before an exam. We built BrieflyAI to cut through the noise and get straight to what matters — fast.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Tech Stack
 
-### `npm run eject`
+| Layer | Technology | Purpose |
+|---|---|---|
+| Frontend | React (JavaScript) | UI and user interaction |
+| Backend | FastAPI (Python) | API server and request handling |
+| AI | Groq API | Fast, high-quality text summarisation |
+| File Parsing | PyMuPDF | Extracting text from PDFs |
+| Styling | CSS3 | Custom component design |
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Features
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- ⚡ **Fast** — summaries generated in seconds via Groq's inference API
+- 🎯 **Structured output** — summary, key concepts, and formulas returned as separate sections
+- 📥 **Styled PDF download** — green-branded, paginated, with bold headings
+- 🛡️ **Input validation** — rejects non-PDF files with a clear error message
+- 📱 **Clean, welcoming UI** — designed with students in mind, no friction to get started
+- 🔒 **Privacy-first** — nothing is stored, nothing is saved
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## Known Limitations
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Works best with text-based PDFs — scanned image PDFs cannot be processed
+- Mathematical symbols may not render correctly depending on how they are encoded in the source PDF
+- File size limit: 10MB
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## Team
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+| Name | Role | GitHub |
+|---|---|---|
+| Ntando | Backend + AI | [@nt883](https://github.com/nt883) |
+| Ndivhuwo | Frontend + UI | [@Ndivhuwo2](https://github.com/Ndivhuwo2) |
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Setup & Installation
 
-### Making a Progressive Web App
+### Prerequisites
+- Node.js v18+
+- Python 3.10+
+- A Groq API key (free at [console.groq.com](https://console.groq.com))
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Frontend
+```bash
+cd frontend
+npm install
+npm start
+```
 
-### Advanced Configuration
+### Backend
+```bash
+cd backend
+python -m venv venv
+venv\Scripts\activate        # Windows
+pip install -r requirements.txt
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Create a `.env` file inside `backend/`:
