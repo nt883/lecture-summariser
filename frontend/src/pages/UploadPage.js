@@ -38,9 +38,9 @@ function UploadPage() {
       formData3.append('file', file);
 
       const [summaryRes, formulasRes, conceptsRes] = await Promise.all([
-        fetch('http://127.0.0.1:8000/summarise', { method: 'POST', body: formData1 }),
-        fetch('http://127.0.0.1:8000/formulas', { method: 'POST', body: formData2 }),
-        fetch('http://127.0.0.1:8000/concepts', { method: 'POST', body: formData3 }),
+        fetch('https://brieflyai-apuv.onrender.com/summarise', { method: 'POST', body: formData1 }),
+        fetch('https://brieflyai-apuv.onrender.com/formulas', { method: 'POST', body: formData2 }),
+        fetch('https://brieflyai-apuv.onrender.com/concepts', { method: 'POST', body: formData3 }),
       ]);
 
       const summaryData = await summaryRes.json();
